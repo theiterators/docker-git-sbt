@@ -1,14 +1,14 @@
 FROM docker:18.09.6-git
 
-ENV SBT_VERSION 1.1.5
+ENV SBT_VERSION 1.3.0
 
-ENV SCALA_VERSION 2.12.4
+ENV SCALA_VERSION 2.12.8
 
 ENV JAVA_VERSION_MAJOR=8 \
     JAVA_VERSION_MINOR=212 \
-    JAVA_VERSION_BUILD=04 
+    JAVA_VERSION_BUILD=04-r1
 
-RUN apk add --no-cache --virtual=build-dependencies curl && \
+RUN apk add --upgrade --no-cache --virtual=build-dependencies curl && \
     curl -sL "https://piccolo.link/sbt-${SBT_VERSION}.tgz" | gunzip | tar -x -C /usr/local && \
     ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
