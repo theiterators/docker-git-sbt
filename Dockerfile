@@ -15,6 +15,7 @@ RUN apk update && apk add --no-cache --virtual=build-dependencies tar libcurl cu
     apk del build-dependencies
 
 RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}-jre=${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR}.${JAVA_VERSION_BUILD}
+RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}=${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR}.${JAVA_VERSION_BUILD}
 
 RUN \
   sbt sbtVersion && \
