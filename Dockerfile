@@ -1,12 +1,12 @@
-FROM docker:19.03.3-git
+FROM docker:19.03.5-git
 
-ENV SBT_VERSION 1.3.2
+ENV SBT_VERSION 1.3.7
 
-ENV SCALA_VERSION 2.12.9
+ENV SCALA_VERSION 2.12.10
 
 ENV JAVA_VERSION_MAJOR=8 \
-    JAVA_VERSION_MINOR=222 \
-    JAVA_VERSION_BUILD=10-r0 
+    JAVA_VERSION_MINOR=232 \
+    JAVA_VERSION_BUILD=09-r0 
 
 RUN apk update && apk add --no-cache --virtual=build-dependencies tar libcurl curl && \
     curl -sL "https://piccolo.link/sbt-${SBT_VERSION}.tgz" | gunzip | tar -x -C /usr/local && \
