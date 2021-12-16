@@ -19,6 +19,8 @@ RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}=${JAVA_VERSION_MAJOR}.$
 ENV JAVA_HOME=/usr/local/openjdk-17
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
+RUN apk add freetype-dev fontconfig  ttf-dejavu
+
 RUN \
   mkdir precompile && cd precompile && \
   sbt sbtVersion && \
