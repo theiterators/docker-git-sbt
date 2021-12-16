@@ -1,12 +1,12 @@
 FROM docker:19.03.5-git
 
-ENV SBT_VERSION 1.5.0
+ENV SBT_VERSION 1.5.7
 
-ENV SCALA_VERSION 2.13.5
+ENV SCALA_VERSION 2.13.6
 
-ENV JAVA_VERSION_MAJOR=8 \
-    JAVA_VERSION_MINOR=275 \
-    JAVA_VERSION_BUILD=01-r0
+ENV JAVA_VERSION_MAJOR=17 \
+    JAVA_VERSION_MINOR=0 \
+    JAVA_VERSION_BUILD=1_p12-r0
 
 RUN apk update && apk add --no-cache --virtual=build-dependencies tar libcurl curl && \
     curl -sL "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | gunzip | tar -x -C /usr/local && \
@@ -14,9 +14,9 @@ RUN apk update && apk add --no-cache --virtual=build-dependencies tar libcurl cu
     chmod 0755 /usr/local/bin/sbt && \
     apk del build-dependencies
 
-RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}=${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR}.${JAVA_VERSION_BUILD}
+RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}=${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR}.${JAVA_VERSION_BUILD} --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community
 
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8-openjdk
+ENV JAVA_HOME=/usr/local/openjdk-17
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
 RUN \
