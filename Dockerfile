@@ -1,6 +1,6 @@
 FROM docker:19.03.5-git
 
-ENV SBT_VERSION 1.7.2
+ENV SBT_VERSION 1.7.3
 
 ENV SCALA_VERSION 2.13.10
 
@@ -13,8 +13,8 @@ RUN apk update && apk add --no-cache --virtual=build-dependencies tar libcurl cu
     ln -s /usr/local/sbt/bin/sbt /usr/local/bin/sbt && \
     chmod 0755 /usr/local/bin/sbt && \
     apk del build-dependencies
-
-RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}=${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR}.${JAVA_VERSION_BUILD}
+RUN apk add -X https://dl-cdn.alpinelinux.org/alpine/v3.14/main -u alpine-keys # needed for 'UNTRUSTED signature' error when installing jdk17
+RUN apk add --no-cache bash openjdk${JAVA_VERSION_MAJOR}=${JAVA_VERSION_MAJOR}.${JAVA_VERSION_MINOR}.${JAVA_VERSION_BUILD} --repository=http://dl-cdn.alpinelinux.org/alpine/v3.15/community
 
 ENV JAVA_HOME=/usr/lib/jvm/java-${JAVA_VERSION_MAJOR}-openjdk
 ENV PATH="$JAVA_HOME/bin:${PATH}"
