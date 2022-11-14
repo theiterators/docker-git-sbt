@@ -1,6 +1,6 @@
 FROM docker:19.03.5-git
 
-ENV SBT_VERSION 1.7.3
+ENV SBT_VERSION 1.8.0
 
 ENV SCALA_VERSION 2.13.10
 
@@ -25,6 +25,7 @@ RUN \
   mkdir -p project && \
   echo "scalaVersion := \"${SCALA_VERSION}\"" > build.sbt && \
   echo "sbt.version=${SBT_VERSION}" > project/build.properties && \
+  echo "case object Temp" > project/Temp.scala && \
   echo "case object Temp" > Temp.scala && \
   sbt compile && \
   cd .. && rm -rf precompile
