@@ -4,9 +4,9 @@ ENV SBT_VERSION 1.9.7
 
 ENV SCALA_VERSION 2.13.12
 
-ENV JAVA_VERSION_MAJOR=17 \
+ENV JAVA_VERSION_MAJOR=21 \
     JAVA_VERSION_MINOR=0 \
-    JAVA_VERSION_BUILD=9_p8-r0
+    JAVA_VERSION_BUILD=1_p12-r0
 
 RUN apk update && apk add --no-cache --virtual=build-dependencies tar libcurl curl && \
     curl -sL "https://github.com/sbt/sbt/releases/download/v${SBT_VERSION}/sbt-${SBT_VERSION}.tgz" | gunzip | tar -x -C /usr/local && \
